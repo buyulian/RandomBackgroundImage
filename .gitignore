@@ -1,0 +1,16 @@
+.git/*
+*.iws
+.project
+.setting
+*.lib
+*.jar
+*.properties
+/*/*/target
+/*/target
+*.class
+*/target
+log/
+*.log
+.DS_Store
+out
+.idea

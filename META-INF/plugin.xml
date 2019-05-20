@@ -1,0 +1,48 @@
+<idea-plugin>
+  <id>com.me.image</id>
+  <name>Random Background Image</name>
+  <version>0.0.1</version>
+  <vendor email="67764256@qq.com" url="https://github.com/buyulian/RandomBackgroundImage">buyulian</vendor>
+
+  <description><![CDATA[
+      Set the editor background to a random picture from a folder.<br>
+      fix up bug.<br>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Set the editor background to a random picture from a folder.
+      fix change image bug<br>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <depends>com.intellij.modules.lang</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationConfigurable groupId="appearance" groupWeight="20" id="background.image.plus"
+                             displayName="Background Image Plus"
+                             instance="com.me.image.ui.Settings"/>
+  </extensions>
+
+  <actions>
+    <group id="backgroundImagePlus" text="Background Image Plus" description="Background Image Plus">
+      <add-to-group group-id="ViewMenu" anchor="before" relative-to-action="ToggleFullScreenGroup"/>
+      <separator/>
+      <action id="setBackgroundImage" class="org.intellij.images.editor.actions.SetBackgroundImageAction"
+              text="Set Background Image"/>
+      <action id="randomBackgroundImage" class="com.me.image.action.RandomBackground"
+              text="Random Background Image"/>
+      <action id="clearBackgroundImage" class="com.me.image.action.ClearBackground"
+              text="Clear Background Image"/>
+    </group>
+  </actions>
+
+</idea-plugin>
