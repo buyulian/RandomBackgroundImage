@@ -1,6 +1,7 @@
 package com.me.image;
 
 import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.wm.impl.IdeBackgroundUtil;
 import com.me.image.ui.Settings;
 
@@ -58,14 +59,13 @@ public class RandomBackgroundTask implements Runnable {
         if (image.contains(",")) {
             NotificationCenter.notice("Intellij wont load images with ',' character\n" + image);
         }
-        prop.setValue(IdeBackgroundUtil.FRAME_PROP, null);
-        prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
 
-        try {
+        ApplicationManager.getApplication().invokeLater(()->{
+            prop.setValue(IdeBackgroundUtil.FRAME_PROP, null);
+            prop.setValue(IdeBackgroundUtil.EDITOR_PROP, image);
             IdeBackgroundUtil.repaintAllWindows();
-        } catch (Exception e) {
-            //这里必出异常，先捕获再说
-        }
+        });
+
     }
 
     public static void resetImageList(){
